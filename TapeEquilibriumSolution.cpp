@@ -23,3 +23,32 @@ int solution(vector<int> &A) {
     return min;
     
 }  
+
+
+// PERFORMANCE TEST
+/*to compare to other solutions
+▶ medium_random1 
+random medium, numbers from 0 to 100, length = ~10,000 ✔OK
+1. 0.009 s OK
+▶ medium_random2 
+random medium, numbers from -1,000 to 50, length = ~10,000 ✔OK
+1. 0.010 s OK
+▶ large_ones 
+large sequence, numbers from -1 to 1, length = ~100,000 ✔OK
+1. 0.015 s OK
+2. 0.015 s OK
+▶ large_random 
+random large, length = ~100,000 ✔OK
+1. 0.019 s OK
+2. 0.019 s OK
+▶ large_sequence 
+large sequence, length = ~100,000 ✔OK
+1. 0.012 s OK
+▶ large_extreme 
+large test with maximal and minimal values, length = ~100,000 ✔OK
+1. 0.020 s OK
+2. 0.020 s OK
+3. 0.018 s OK
+*/
+
+
