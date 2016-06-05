@@ -1,0 +1,20 @@
+
+int solution(int N, int M) {
+    // write your code in C++11 (g++ 4.8.2)
+  if(N==0){return 0;}
+    if(M>=N){M=M%N;}
+    if(M==0){return 1;}  
+    int r=N%M;
+    if(r==0){return N/M;}
+    else    
+{
+    int temp=M;
+        while(r>0)
+        {            
+         M=r;
+         r=temp%r;
+         temp=M;
+        }    
+    return N/M;
+    }
+}
