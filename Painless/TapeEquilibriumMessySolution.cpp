@@ -4,7 +4,6 @@
 int solution(vector<int> &A) {
     // write your code in C++11
     
-    
     long ref=0;
     for (auto s=1;s<A.size();s++)
         {   
@@ -17,12 +16,10 @@ int solution(vector<int> &A) {
     for (auto s=1;s<A.size()-1;s++)
         {   
             diff  += 2 * A[s];
-            
             if(abs(diff) < ref) {ref = abs(diff);}    
         }
     
     return ref;
-    
 }  
 
 
