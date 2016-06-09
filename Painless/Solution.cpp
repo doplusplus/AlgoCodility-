@@ -2,8 +2,8 @@
 //================= first solution =======================================
 int solution(vector<int> &A) 
 {
-unsigned int n = A.size();           //necessary to avoid conversion errors
-unsigned long Sum = (n+1)*(n+2);  
+unsigned int n = A.size();           
+unsigned long Sum = (n+1)*(n+2);  //necessary to avoid conversion errors
 
 for(unsigned int it=0; it < n ;it++)
     {
