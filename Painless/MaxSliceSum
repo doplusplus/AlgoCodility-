@@ -1,0 +1,37 @@
+
+
+#include <algorithm>
+
+// you can write to stdout for debugging purposes, e.g.
+// cout << "this is a debug message" << endl;
+
+int solution(vector<int> &A) {
+    // write your code in C++11 (g++ 4.8.2)
+    
+    int n=A.size();
+    long carry=A[0];
+    vector<long> B;
+    for(int i=1;i<n;i++)
+    {
+        if((A[i]>0&&carry<0||A[i]<0&&carry>0)){ B.push_back(carry);carry=0;}
+        carry+=A[i];
+    }
+    B.push_back(carry);
+    carry=0;
+    int it=0;
+    long max=B[0];
+   
+    if(B.size()==1)
+    {
+        if(B[0]<0){return *max_element(A.begin(),A.end());}
+        else{return B[0];}
+    }
+    while(it<B.size())
+    {
+        carry=(B[it]+carry>0)?B[it]+carry:0;
+        if(carry>max){max=carry;}        
+        it++;
+    }    
+    return max;
+}
+
