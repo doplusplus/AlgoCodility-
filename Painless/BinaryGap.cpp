@@ -20,3 +20,26 @@ int solution(int N) {
     
     return MaxCount;
 }
+
+
+
+
+//Other solution
+int solution(int N) {
+    // write your code in C++14 (g++ 6.2.0)
+    int max=0;
+    if(N<5){return 0;}
+    
+    while(N%2==0){N/=2;}
+    N/=2;
+    while(N/2>=1){
+        int tempMax=0;
+        while(N%2==0){
+            tempMax++;    
+              N/=2; 
+            }
+            N/=2;
+        max=tempMax>max?tempMax:max;
+        }
+    return max;
+}
