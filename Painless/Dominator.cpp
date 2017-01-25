@@ -27,3 +27,38 @@ int solution(vector<int> &A) {
     numb=count(A.begin(),A.end(),candidate);
     return numb>n/2?index:-1;
 }
+
+
+
+//different solution
+
+#include <algorithm>
+#include <cmath>
+// you can write to stdout for debugging purposes, e.g.
+// cout << "this is a debug message" << endl;
+
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    vector<int> decomp(64, 0);
+    int n=A.size();
+ int t,k;
+    for(int i=0;i<n;i++){
+    t=A[i];
+    k=0;     
+        while(t>=1){
+            decomp[k]+=t%2;                   
+            t/=2;
+            k++;   
+        }
+    }
+    
+    int dom=0;
+    for(int i=0;i<64;i++){
+        if(decomp[i]>n/2){dom+=pow(2,i); }        
+    }
+    
+    if(count(A.begin(), A.end(), dom)<=n/2){
+        return -1;
+    } 
+   return find(A.begin(), A.end(), dom)-A.begin();
+}
