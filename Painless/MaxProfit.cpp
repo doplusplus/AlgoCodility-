@@ -26,3 +26,32 @@ int solution(vector<int> &A)
     
     return gains;
 }
+
+
+//Other solution
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    
+    int n=A.size();
+    int max=0;
+    int potProf=0;
+    
+    if(n<2){return 0;}
+    
+    for(int i=0;i<n-1;i++){
+        A[i]=A[i+1]-A[i];    
+        }
+    A.pop_back();
+    
+    for(int j=0;j<A.size();j++){
+        if(potProf+A[j]>0){
+        potProf+=A[j];
+        max=max>potProf?max:potProf;
+        }
+        else{
+        potProf=0;
+        }
+    }
+ 
+    return max;
+}
