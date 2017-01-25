@@ -24,3 +24,24 @@ int solution(vector<int> &A, vector<int> &B) {
 
     return A.size()-nom;
 }
+
+
+//Shorter version
+int solution(vector<int> &A, vector<int> &B) {
+    // write your code in C++14 (g++ 6.2.0)
+    int n=0;
+    vector<int> goUpstream;
+    while(A.size()>0){
+        if(B.back()==1){
+            while(goUpstream.size()>0&&A.back()>goUpstream.back()){
+                goUpstream.pop_back();
+            }
+            if(goUpstream.size()==0){n++;}
+        }
+        else{
+            goUpstream.push_back(A.back());    
+        }
+     B.pop_back(); A.pop_back();
+    }
+ return n+goUpstream.size();
+}
