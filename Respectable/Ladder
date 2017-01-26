@@ -1,0 +1,28 @@
+// you can use includes, for example:
+#include <algorithm>
+#include <cmath>
+// you can write to stdout for debugging purposes, e.g.
+// cout << "this is a debug message" << endl;
+
+vector<int> solution(vector<int> &A, vector<int> &B) {
+    // write your code in C++14 (g++ 6.2.0)
+    
+    int range= *max_element(A.begin(),A.end());
+    int mod=pow(2,30);
+    vector<int> Fb;
+    Fb.push_back(1);
+    Fb.push_back(1);
+    
+    for(int i= 2;i<=range;i++){
+        Fb.push_back((Fb[i-2]+Fb[i-1])%mod);
+    }
+    
+    vector<int> Result;
+    for(int j=0;j<A.size();j++){
+        mod=pow(2,B[j]);
+        Result.push_back(Fb[A[j]]%mod);
+    }
+    
+    return Result;   
+}
+
