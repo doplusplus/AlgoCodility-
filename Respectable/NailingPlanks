@@ -1,0 +1,52 @@
+
+
+#include <map>
+#include <algorithm>
+
+bool enough(const map<int, vector<int>> &planks, vector<int> C) {
+	sort(C.begin(), C.end());
+	int p = 0;
+	for (auto it = planks.begin(); it != planks.end(); it++) {
+		while (p<C.size()&&C[p] < it->first)
+		{ p++; }
+		if (p == C.size()) { return false; }
+		if (C[p]>it->second[0] > 0) { return false; }
+	}
+	return true;
+}
+
+int solution(vector<int> &A, vector<int> &B, vector<int> &C) {
+	// write your code in C++14 (g++ 6.2.0)
+	map<int, vector<int>> planks;
+
+	for (int i = 0; i < A.size(); i++){
+		if (planks.find(A[i]) == planks.end()) {
+			planks.insert(pair<int, vector<int>>(A[i], vector<int>(1,B[i])));
+		}
+		else {
+			planks[A[i]].push_back(B[i]);
+		}
+	}
+	for (auto it = planks.begin(); it != planks.end(); it++) {
+		sort(it->second.begin(), it->second.end());
+	}
+
+	int left = 0;
+	int right = C.size() ;
+
+	if (enough(planks, C)==false) { return -1; }
+
+	while (right - left > 1) {
+		vector<int> J(C.begin(), C.begin()+ ((right+left)/2) );
+		if (enough(planks, J)) 
+		{ right = (left + right) / 2; }
+		else{
+			left = (left + right) / 2; 
+		}
+	}
+
+	vector<int> J(C.begin(), C.begin() + left);
+	if (enough(planks, J)) {return left; }
+	return right;
+}
+
