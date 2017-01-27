@@ -1,34 +1,30 @@
-
-
 #include <map>
 #include <algorithm>
+#include <cmath>
 
-bool enough(const map<int, vector<int>> &planks, vector<int> C) {
+bool enough(const map<int, int> &planks, vector<int> C) {
 	sort(C.begin(), C.end());
 	int p = 0;
 	for (auto it = planks.begin(); it != planks.end(); it++) {
 		while (p<C.size()&&C[p] < it->first)
 		{ p++; }
 		if (p == C.size()) { return false; }
-		if (C[p]>it->second[0] > 0) { return false; }
+		if (C[p]>it->second) { return false; }
 	}
 	return true;
 }
 
 int solution(vector<int> &A, vector<int> &B, vector<int> &C) {
 	// write your code in C++14 (g++ 6.2.0)
-	map<int, vector<int>> planks;
+	map<int, int> planks;
 
 	for (int i = 0; i < A.size(); i++){
 		if (planks.find(A[i]) == planks.end()) {
-			planks.insert(pair<int, vector<int>>(A[i], vector<int>(1,B[i])));
+			planks.insert(pair<int,int>(A[i], B[i]));
 		}
 		else {
-			planks[A[i]].push_back(B[i]);
+			planks[A[i]]=min(planks[A[i]],B[i]);
 		}
-	}
-	for (auto it = planks.begin(); it != planks.end(); it++) {
-		sort(it->second.begin(), it->second.end());
 	}
 
 	int left = 0;
@@ -49,4 +45,3 @@ int solution(vector<int> &A, vector<int> &B, vector<int> &C) {
 	if (enough(planks, J)) {return left; }
 	return right;
 }
-
