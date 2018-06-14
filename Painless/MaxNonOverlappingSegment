@@ -1,0 +1,20 @@
+
+int solution(vector<int> &A, vector<int> &B) {
+    // write your code in C++14 (g++ 6.2.0)
+    
+    
+    int aPos=0,bPos=0,count=0,N=A.size();
+    
+    if(N==0){return 0;}
+    
+    count++;
+    while(aPos<N){
+        
+     if(B[bPos]<A[aPos]){
+         count++;
+         bPos=aPos;
+     }   
+        aPos++;
+    }  
+    return count;
+}
