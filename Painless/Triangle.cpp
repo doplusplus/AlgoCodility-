@@ -20,3 +20,19 @@ for (int j=A.size()-3;j>=0;j--)
 }
 return 0;
 }
+
+
+
+//Simpler
+int solution(vector<int> &A) {
+    // write your code in C++14 (g++ 6.2.0)
+    int n = A.size();
+    if(n<3){return 0;}
+    std::sort(A.begin(),A.end());
+    for(int i=0; i<n-2 ; ++i){
+        if(  A[i] > A[i+2] - A[i+1]){
+            return 1;
+        }
+    }
+    return 0;
+}
