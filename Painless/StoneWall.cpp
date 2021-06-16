@@ -24,3 +24,26 @@ int solution(vector<int> &H) {
             }
     return num;
 }
+
+// minimum height is 1 in this one
+int solution(vector<int> &H) {
+    // write your code in C++14 (g++ 6.2.0)
+    std::vector<int> stack ={H[0]};
+    int count = 1;
+    for(auto height : H ){
+        if(height > stack.back()){
+            count++;
+            stack.push_back(height);
+        }
+        if(height < stack.back()){
+            while( height < stack.back() ){
+                stack.pop_back();
+            }
+            if(height > stack.back()){
+                count++;
+                stack.push_back(height);
+            }
+        }
+    }
+    return count;
+}
